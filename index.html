@@ -426,12 +426,12 @@ td.num, th.num { text-align: right; }
     var whole = Math.floor(s.price), cents = (s.price - whole).toFixed(2).slice(1);
     h += '<div class="price"><span>$' + whole + '<small>' + cents + '</small></span><span class="chg">' + (s.chg >= 0 ? "+" : "") + "$" + fmt(Math.abs(s.chg)) + " " + fmt(Math.abs(s.pct)) + "%</span></div>";
     h += '<div class="rangebar"></div><div class="bidask mono"><span>Bid ' + fmt(s.bid) + " &times; " + fmt(s.bidSz, 0) + '</span><span>Spread $' + fmt(s.ask - s.bid) + '</span></div><div class="bidask mono"><span>Ask ' + fmt(s.ask) + " &times; " + fmt(s.askSz, 0) + "</span><span></span></div>";
-    h += '<div class="btnrow"><button class="dbtn" data-act="buy">Buy</button><button class="dbtn" data-act="sell"' + (s.status === "NOSHORT" && !pos ? "" : "") + ">Sell</button></div>";
+    h += '<div class="btnrow"><button class="dbtn" data-act="buy">Buy</button><button class="dbtn" data-act="sell"' + (s.status === "NOSHORT" && !pos ? "" : "") + ">" + (S.demo.long ? "Sell" : "Short") + "</button></div>";
     if (htb) {
       if (blocked) h += '<div class="lock"><b>Not available for your account type.</b><br>Short selling hard-to-borrow stocks is limited to experienced, top-tier accounts.</div>';
-      h += '<div class="borrow"><div class="row"><span>Borrow rate (indicative)</span><b>' + fmt(s.rate, 1) + '% annualized</b></div>' +
+      h += '<div class="borrow"><div class="row"><span>Est. borrow rate</span><b>' + fmt(s.rate, 1) + '% annualized</b></div>' +
         (s.thr ? '<div class="row"><span>Reg SHO</span><span>On the threshold list</span></div>' : "") +
-        '<div class="note">Shown before you start an order. The rate on your order ticket is the current rate and can change at any time.</div></div>';
+        '<div class="note">This rate is an estimate and can change at any time. You’ll see the current rate before you confirm your order.</div></div>';
     }
     h += '<button class="optchain"><span>View Option Chain</span><span aria-hidden="true">&rsaquo;</span></button>';
     [["Opening Price", s.open], ["Previous Close", s.prev], ["High", s.high], ["Low", s.low]].forEach(function (r) { h += '<div class="kvd"><span>' + r[0] + "</span><span>$" + fmt(r[1]) + "</span></div>"; });
