@@ -109,6 +109,9 @@ td.num, th.num { text-align: right; }
 .tier.t1 { background: #ffe6a8; color: #5a3d00; }
 .tier.t2 { background: #ffd0cc; color: #7a1f17; }
 .rowlink { border: 0; background: transparent; color: var(--blue); padding: 0; text-decoration: underline; }
+.ibadge { position: relative; margin-left: 8px; width: 16px; height: 16px; border-radius: 50%; border: 1px solid var(--muted); background: transparent; color: var(--muted); font-size: 10px; font-weight: 700; font-style: italic; line-height: 1; padding: 0; vertical-align: 1px; }
+.ibadge::before { content: ""; position: absolute; inset: -6px; }
+.ibadge:hover, .ibadge:focus-visible { color: var(--ink); border-color: var(--ink); }
 .flash { animation: flash 1.2s ease-out 1; }
 @keyframes flash { from { background: rgba(242, 169, 0, 0.35); } to { background: transparent; } }
 @media (prefers-reduced-motion: reduce) { .flash { animation: none; } }
@@ -148,6 +151,56 @@ td.num, th.num { text-align: right; }
 .oneTap button { border: 0; background: var(--dark-3); color: var(--on-dark); border-radius: 6px; padding: 8px 4px; font-size: 11px; font-weight: 600; }
 .oneTap button:disabled { opacity: 0.4; cursor: not-allowed; }
 .oneTap button:hover:not(:disabled) { background: #3d3e41; }
+
+/* ---------- inline order ticket (side panel) ---------- */
+.tk { display: flex; flex-direction: column; flex: 1; min-height: 100%; }
+.side:has(.tk) { padding: 10px; }
+.tk .card { background: var(--dark-2); border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 11px; flex: 1; }
+.tk h3 { margin: 0; font-size: 16px; font-weight: 600; }
+.tk .sym b { font-size: 17px; font-weight: 700; margin-right: 6px; }
+.tk .sym small { display: block; color: var(--on-dark-muted); font-size: 11px; margin-top: 1px; }
+.tk .dim, .tk .hint { color: var(--on-dark-muted); }
+.tk .hint { font-size: 11px; }
+.tk .steps { color: var(--on-dark-muted); gap: 4px 12px; }
+.tk .steps li::before { border-color: var(--dark-3); }
+.tk .steps li.done, .tk .steps li.now, .tk .steps li.bad { color: var(--on-dark); }
+.tk .steps li.done::before { background: var(--pos); border-color: var(--pos); }
+.tk .steps li.now::before { background: var(--amber); border-color: var(--amber); }
+.tk .steps li.bad::before { background: var(--neg); border-color: var(--neg); }
+.tk .rows { display: grid; }
+.tk .rw { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 5px 0; font-size: 12.5px; }
+.tk .rw > :first-child { color: var(--on-dark-muted); }
+.tk .rw > :last-child { flex: 1 1 auto; text-align: right; font-weight: 600; }
+.tk .rw input, .tk .rw select { display: block; width: 100%; max-width: 175px; margin-left: auto; background: var(--dark); border: 1px solid var(--dark-3); color: var(--on-dark); border-radius: 8px; padding: 4px 8px; font: inherit; font-size: 12px; font-weight: 500; }
+.tk .rw input { text-align: right; }
+.tk .rw.tot { border-top: 1px solid var(--dark-3); margin-top: 4px; padding-top: 11px; font-size: 13.5px; }
+.tk .rw.tot > :first-child { color: var(--on-dark); font-weight: 600; }
+.tk .rate { background: var(--dark); border-radius: 12px; padding: 11px 12px; display: grid; gap: 3px; }
+.tk .rate .rw { padding: 3px 0; font-size: 12px; }
+.tk .rate .rw > :first-child { color: var(--on-dark); font-weight: 600; }
+.tk .apr { flex: none; background: rgba(110, 150, 255, 0.18); color: #9db8ff; padding: 3px 9px; border-radius: 8px; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-weight: 600; }
+.tk .rate .note { border-top: 1px solid var(--dark-3); padding-top: 6px; margin-top: 2px; color: var(--on-dark-muted); font-size: 10.5px; line-height: 1.3; }
+.tk .ratestat { display: flex; align-items: flex-start; gap: 8px; color: var(--on-dark-muted); font-size: 11.5px; line-height: 1.4; }
+.tk .ratestat .dot { flex: none; margin-top: 5px; }
+.tk .ratestat .spinner { flex: none; margin-top: 1px; }
+.tk .linkbtn { color: var(--on-dark); font-size: 11.5px; }
+.tk .spinner { border-color: var(--dark-3); border-top-color: var(--on-dark); margin-right: 0; }
+.tk .accepted { background: var(--dark); color: var(--on-dark); }
+.tk .warnbox { background: var(--dark); color: var(--on-dark-muted); border-left: 3px solid var(--amber); padding: 10px 12px; font-size: 11px; }
+.tk .warnbox ul { margin: 4px 0 0; padding-left: 16px; }
+.tk .warnbox li { margin-bottom: 2px; }
+.tk .warnbox b { color: var(--on-dark); }
+.tk .foot { display: flex; gap: 10px; margin-top: auto; position: sticky; bottom: 0; background: var(--dark-2); padding-top: 8px; }
+.tk .back { width: 42px; height: 42px; flex: none; border: 0; border-radius: 50%; background: var(--dark-3); color: var(--on-dark); display: grid; place-items: center; padding: 0; }
+.tk .back svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.tk .go { flex: 1; border: 0; border-radius: 12px; padding: 11px 10px; background: var(--dark-3); color: var(--on-dark); font-weight: 600; font-size: 14px; }
+.tk .go:hover:not(:disabled) { background: #3a3b3e; }
+.tk .go.locate { background: #e8892b; color: #141414; }
+.tk .go.locate:hover:not(:disabled) { background: #f0993f; }
+.tk .go.locate .spinner { border-color: rgba(20, 20, 20, 0.25); border-top-color: #141414; }
+.tk .go.submit { background: #1a7f4b; color: #ffffff; }
+.tk .go.submit:hover:not(:disabled) { background: #1f9158; }
+.tk .go:disabled { opacity: 0.5; cursor: not-allowed; }
 .pop { position: absolute; top: 34px; left: 0; z-index: 20; width: 270px; background: var(--dark-2); border: 1px solid var(--dark-3); border-radius: 12px; padding: 6px; box-shadow: var(--shadow); }
 .pop button { width: 100%; text-align: left; border: 0; background: transparent; color: var(--on-dark); padding: 8px 10px; border-radius: 8px; display: grid; gap: 2px; }
 .pop button:hover { background: var(--dark-3); }
@@ -190,19 +243,35 @@ td.num, th.num { text-align: right; }
 .cost .r { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
 .cost .r b { font-size: 15px; }
 .cost .f { color: var(--muted); font-size: 11px; }
-.timer { border-radius: 10px; background: var(--chip); overflow: hidden; position: relative; height: 34px; display: grid; place-items: center; font-weight: 600; }
-.timer i { position: absolute; left: 0; top: 0; bottom: 0; background: rgba(242, 169, 0, 0.35); transition: width 0.25s linear; }
-.timer span { position: relative; }
-.warnbox { background: var(--warn-bg); color: var(--warn-ink); border-radius: 12px; padding: 10px 12px; font-size: 12px; }
+.warnbox { background: var(--chip); color: var(--ink); border-left: 3px solid var(--amber); border-radius: 12px; padding: 10px 12px; font-size: 12px; }
 .warnbox ul { margin: 6px 0 0; padding-left: 18px; }
 .badbox { background: var(--bad-bg); color: var(--bad-ink); border-radius: 12px; padding: 12px 14px; }
-.overlay { position: absolute; inset: 0; background: rgba(15, 16, 18, 0.96); color: #f2f3f5; display: grid; place-content: center; gap: 12px; padding: 24px; text-align: center; z-index: 5; }
-.overlay .btn:not(.amber) { background: #2f3032; color: #ffffff; }
-.overlay h4 { margin: 0; font-size: 18px; }
-.overlay p { margin: 0; color: #c9ccd0; }
-.overlay .acts { display: flex; gap: 10px; justify-content: center; margin-top: 4px; }
 .changed { background: var(--warn-bg); color: var(--warn-ink); border-radius: 10px; padding: 10px 12px; font-size: 12px; display: grid; gap: 6px; }
 .changed label { display: flex; gap: 8px; align-items: center; }
+.steps { display: flex; flex-wrap: wrap; gap: 4px 14px; list-style: none; padding: 0; margin: 0; font-size: 11px; color: var(--muted); }
+.steps li { display: flex; align-items: center; gap: 6px; }
+.steps li::before { content: ""; width: 8px; height: 8px; border-radius: 50%; border: 2px solid var(--line); }
+.steps li.done { color: var(--ink); }
+.steps li.done::before { background: var(--pos); border-color: var(--pos); }
+.steps li.now, .steps li.bad { color: var(--ink); font-weight: 600; }
+.steps li.now::before { background: var(--amber); border-color: var(--amber); }
+.steps li.bad::before { background: var(--neg); border-color: var(--neg); }
+.slip { background: var(--chip); border-radius: 12px; padding: 12px 14px; display: grid; gap: 6px; }
+.slip h4 { margin: 0 0 2px; font-size: 13px; font-weight: 600; }
+.slip .r { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.slip .r span { color: var(--muted); }
+.slip .r b { font-size: 15px; }
+.slip .f { color: var(--muted); font-size: 11px; }
+.okbox, .infobox { background: var(--chip); border-radius: 12px; padding: 12px 14px; border-left: 3px solid var(--pos); }
+.infobox { border-left-color: var(--amber); }
+.ratestat { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; color: var(--muted); font-size: 12px; }
+.ratestat .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--pos); }
+.linkbtn { border: 0; background: none; padding: 0; color: var(--ink); font-size: 12px; text-decoration: underline; }
+.changed .btn { padding: 7px 12px; }
+.accepted { display: flex; gap: 8px; align-items: center; background: var(--chip); border-radius: 12px; padding: 9px 12px; font-size: 12px; border-left: 3px solid var(--pos); }
+.accepted .tick { color: var(--pos); font-weight: 700; }
+@media (prefers-reduced-motion: no-preference) { .accepted.fresh { animation: fadein 0.3s ease-out; } }
+@keyframes fadein { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
 .spinner { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--line); border-top-color: var(--ink); display: inline-block; animation: spin 0.8s linear infinite; vertical-align: -2px; margin-right: 6px; }
 @keyframes spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .spinner { animation: none; } }
@@ -286,9 +355,8 @@ td.num, th.num { text-align: right; }
 
   var S = {
     sym: "ZRXT", qty: 10, tab: "positions", popOpen: false, ctlOpen: false,
-    demo: { eligible: true, ack: "none", avail: "full", data: "fresh", timer: 20, drift: true, long: false },
-    ackAt: null,
-    positions: [], orders: [], ledger: [], banners: [], notified: {},
+    demo: { eligible: true, avail: "full", data: "fresh", timer: 30, drift: true, long: false },
+    positions: [], orders: [], ledger: [], banners: [],
     ticket: null, tick: null
   };
 
@@ -303,12 +371,6 @@ td.num, th.num { text-align: right; }
     return '<span class="htb">Hard to borrow</span>' + (s.thr ? ' <span class="htb thr">Threshold list</span>' : "");
   }
   function charge(qty, price, rate) { return Math.abs(qty) * price * (rate / 100) / 360; }
-  function ackState() {
-    if (S.demo.ack === "none") return "none";
-    if (S.demo.ack === "expired") return "expired";
-    return S.demo.ack; // current | expiring
-  }
-  function ackOk() { var a = ackState(); return a === "current" || a === "expiring"; }
 
   /* ---------- toasts ---------- */
   function toast(title, body, acts, plain) {
@@ -334,9 +396,9 @@ td.num, th.num { text-align: right; }
   }
   function closeModal(keepTicket) {
     $("modalRoot").innerHTML = "";
-    if (!keepTicket) { stopTick(); S.ticket = null; }
+    if (!keepTicket) { stopTick(); var had = S.ticket; S.ticket = null; if (had) renderSide(); }
   }
-  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && $("modalRoot").innerHTML) closeModal(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && ($("modalRoot").innerHTML || S.ticket)) closeModal(); });
 
   /* ---------- render: account ---------- */
   function renderAcct() {
@@ -372,7 +434,7 @@ td.num, th.num { text-align: right; }
     h += '<div class="card"><div class="chartbox"><span>No history available</span></div>' +
       '<div class="bar" style="margin-top:10px"><div class="big">$0<small>.00</small></div><div class="seg"><button>1W</button><button class="on">1M</button><button>6M</button><button>YTD</button><button>1Y</button></div></div></div>';
     h += '<div class="card"><div class="bar"><div class="seg" role="tablist">' +
-      ["positions|Positions", "orders|Orders", "ledger|Fee ledger"].map(function (t) { var p = t.split("|"); return '<button role="tab" data-tab="' + p[0] + '" class="' + (S.tab === p[0] ? "on" : "") + '">' + p[1] + "</button>"; }).join("") +
+      ["positions|Positions", "orders|Orders", "ledger|Activity"].map(function (t) { var p = t.split("|"); return '<button role="tab" data-tab="' + p[0] + '" class="' + (S.tab === p[0] ? "on" : "") + '">' + p[1] + "</button>"; }).join("") +
       '</div><div class="seg"><button class="pill-btn" data-act="closeall">Close all positions</button><span class="search">Search symbol</span></div></div>';
     if (S.tab === "positions") h += positionsTable();
     else if (S.tab === "orders") h += ordersTable();
@@ -399,21 +461,22 @@ td.num, th.num { text-align: right; }
     var h = '<div class="tablewrap"><table><thead><tr><th>Time</th><th>Symbol</th><th>Side</th><th class="num">Qty</th><th>Type</th><th>Time in force</th><th>Status</th></tr></thead><tbody>';
     if (!S.orders.length) return h + '<tr><td colspan="7" class="empty">No data available</td></tr></tbody></table></div>';
     S.orders.slice().reverse().forEach(function (o) {
-      h += "<tr><td>" + o.time + "</td><td><b>" + o.sym + "</b> " + htbLabel(o.sym) + "</td><td>" + o.side + '</td><td class="num mono">' + fmt(o.qty, 0) + "</td><td>" + o.type + "</td><td>" + o.tif + '</td><td><span class="' + (o.status === "Rejected" ? "neg" : "pos") + '">' + o.status + "</span>" + (o.why ? ' <span class="muted small">' + esc(o.why) + "</span>" : "") + "</td></tr>";
+      h += "<tr><td>" + o.time + "</td><td><b>" + o.sym + "</b> " + htbLabel(o.sym) + "</td><td>" + o.side + '</td><td class="num mono">' + fmt(o.qty, 0) + "</td><td>" + o.type + "</td><td>" + o.tif + '</td><td><span class="' + (o.status === "Rejected" ? "neg" : o.status === "Canceled" ? "muted" : "pos") + '">' + o.status + "</span>" + (o.why ? ' <span class="muted small">' + esc(o.why) + "</span>" : "") + "</td></tr>";
     });
     return h + "</tbody></table></div>";
   }
   function ledgerTable() {
-    var h = '<div class="tablewrap"><table><thead><tr><th>Date</th><th>Symbol</th><th class="num">Shares</th><th class="num">Price</th><th class="num">Rate</th><th class="num">Charge</th><th></th></tr></thead><tbody>';
-    if (!S.ledger.length) return h + '<tr><td colspan="7" class="empty">No borrow charges yet. Charges post for shorts held overnight. Use Prototype controls to simulate an overnight accrual.</td></tr></tbody></table></div>';
+    var h = '<div class="tablewrap"><table><thead><tr><th>Date</th><th>Symbol</th><th class="num">Shares</th><th class="num">Price</th><th class="num">Rate</th><th class="num">Charge</th></tr></thead><tbody>';
+    if (!S.ledger.length) return h + '<tr><td colspan="6" class="empty">No activity yet. Borrow charges post here for shorts held overnight. Use Prototype controls to simulate an overnight accrual.</td></tr></tbody></table></div>';
     S.ledger.slice().reverse().forEach(function (l, i) {
-      h += "<tr><td>" + l.date + "</td><td><b>" + l.sym + "</b> " + htbLabel(l.sym) + '</td><td class="num mono">' + fmt(l.shares, 0) + '</td><td class="num">' + money(l.price) + '</td><td class="num">' + fmt(l.rate, 1) + '%</td><td class="num">' + money(-l.charge) + '</td><td><button class="rowlink" data-act="why" data-i="' + (S.ledger.length - 1 - i) + '">Why was I charged?</button></td></tr>';
+      h += "<tr><td>" + l.date + "</td><td><b>" + l.sym + "</b> " + htbLabel(l.sym) + '</td><td class="num mono">' + fmt(l.shares, 0) + '</td><td class="num">' + money(l.price) + '</td><td class="num">' + fmt(l.rate, 1) + '%</td><td class="num">' + money(-l.charge) + '<button class="ibadge" type="button" data-act="why" data-i="' + (S.ledger.length - 1 - i) + '" aria-haspopup="dialog" aria-label="Why was I charged? Opens a breakdown of the charge">i</button></td></tr>';
     });
     return h + "</tbody></table></div>";
   }
 
   /* ---------- render: side panel ---------- */
   function renderSide() {
+    if (S.ticket) { renderTicket(); return; }
     var s = SYMS[S.sym], pos = S.positions.filter(function (p) { return p.sym === S.sym; })[0];
     var htb = s.status === "HTB", blocked = htb && !S.demo.eligible;
     var h = '<div class="symhead"><span class="tick">' + S.sym + '</span><button class="mag" id="magBtn" aria-label="Search symbol" aria-expanded="' + S.popOpen + '"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4-4"/></svg></button>' + htbLabel(S.sym);
@@ -431,7 +494,7 @@ td.num, th.num { text-align: right; }
       if (blocked) h += '<div class="lock"><b>Not available for your account type.</b><br>Short selling hard-to-borrow stocks is limited to experienced, top-tier accounts.</div>';
       h += '<div class="borrow"><div class="row"><span>Est. borrow rate</span><b>' + fmt(s.rate, 1) + '% annualized</b></div>' +
         (s.thr ? '<div class="row"><span>Reg SHO</span><span>On the threshold list</span></div>' : "") +
-        '<div class="note">This rate is an estimate and can change at any time. You’ll see the current rate before you confirm your order.</div></div>';
+        '<div class="note">Borrow rate is indicative and can change daily while the position is held.</div></div>';
     }
     h += '<button class="optchain"><span>View Option Chain</span><span aria-hidden="true">&rsaquo;</span></button>';
     [["Opening Price", s.open], ["Previous Close", s.prev], ["High", s.high], ["Low", s.low]].forEach(function (r) { h += '<div class="kvd"><span>' + r[0] + "</span><span>$" + fmt(r[1]) + "</span></div>"; });
@@ -439,9 +502,9 @@ td.num, th.num { text-align: right; }
     h += '<div class="qa"><div class="hd"><span>Quick Actions</span><span aria-hidden="true">&#8634;</span></div><label for="qty">Quantity</label><input id="qty" type="number" min="1" value="' + S.qty + '">' +
       '<div class="chips">' + [1, 10, 25, 100, 500].map(function (n) { return '<button data-add="' + n + '">+' + n + "</button>"; }).join("") + '</div>' +
       '<div class="kvd" style="color:var(--on-dark-muted)"><span>One-Tap Orders</span><span></span></div><div class="oneTap">' +
-      '<button data-one="buy" data-px="MKT">Buy ' + S.qty + ' @ MKT</button><button data-one="short" data-px="MKT">SHORT ' + S.qty + ' @ MKT</button>' +
-      '<button data-one="buy" data-px="BID">Buy ' + S.qty + ' @ BID</button><button data-one="short" data-px="ASK">SHORT ' + S.qty + ' @ ASK</button>' +
-      '<button data-one="buy" data-px="MID">Buy ' + S.qty + ' @ MID</button><button data-one="short" data-px="MID">SHORT ' + S.qty + ' @ MID</button>' +
+      '<button data-one="buy" data-px="MKT">Buy ' + S.qty + ' @ MKT</button><button data-one="short" data-px="MKT">' + sellWord() + S.qty + ' @ MKT</button>' +
+      '<button data-one="buy" data-px="BID">Buy ' + S.qty + ' @ BID</button><button data-one="short" data-px="ASK">' + sellWord() + S.qty + ' @ ASK</button>' +
+      '<button data-one="buy" data-px="MID">Buy ' + S.qty + ' @ MID</button><button data-one="short" data-px="MID">' + sellWord() + S.qty + ' @ MID</button>' +
       '<button disabled>Buy 10% BP @ASK</button><button disabled>Sell 10% @BID</button></div></div>';
     $("side").innerHTML = h;
   }
@@ -463,7 +526,7 @@ td.num, th.num { text-align: right; }
     if (a === "why") { whyModal(+t.dataset.i); return; }
   });
   document.addEventListener("input", function (e) {
-    if (e.target.id === "qty") { S.qty = Math.max(1, Math.floor(+e.target.value || 1)); var oneTapEls = document.querySelectorAll(".oneTap button[data-one]"); oneTapEls.forEach(function (b) { b.textContent = (b.dataset.one === "buy" ? "Buy " : "SHORT ") + S.qty + " @ " + b.dataset.px; }); }
+    if (e.target.id === "qty") { S.qty = Math.max(1, Math.floor(+e.target.value || 1)); var oneTapEls = document.querySelectorAll(".oneTap button[data-one]"); oneTapEls.forEach(function (b) { b.textContent = (b.dataset.one === "buy" ? "Buy " : sellWord()) + S.qty + " @ " + b.dataset.px; }); }
   });
 
   function nowTime() { return new Date().toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" }); }
@@ -473,8 +536,10 @@ td.num, th.num { text-align: right; }
     toast("Order placed", side + " " + fmt(qty, 0) + " " + sym + " (" + type + ").", null, true);
     renderCenter();
   }
+  function sellWord() { return S.demo.long ? "Sell " : "SHORT "; }
   function oneTap(side, px) {
     if (side === "buy") { placeSimple("Buy", S.sym, S.qty, px === "MKT" ? "Market" : "Limit @ " + px); return; }
+    if (S.demo.long && S.qty <= 100 && SYMS[S.sym].status !== "NOSHORT") { placeSimple("Sell", S.sym, S.qty, px === "MKT" ? "Market" : "Limit @ " + px); return; }
     startShort(S.sym, S.qty, px === "MKT" ? "Market" : "Limit");
   }
   function sellClicked() {
@@ -489,7 +554,6 @@ td.num, th.num { text-align: right; }
     if (s.status === "NOSHORT") { rejectModal(sym, qty, "Can’t be sold short", sym + " isn’t available to short right now. No shares are available to borrow.", true); return; }
     if (s.status === "ETB") { placeSimple("Sell short", sym, qty, type); return; }
     if (!S.demo.eligible) { lockedModal(); return; }
-    if (!ackOk()) { ackModal(function () { openTicket(sym, qty, type); }); return; }
     openTicket(sym, qty, type);
   }
 
@@ -500,141 +564,202 @@ td.num, th.num { text-align: right; }
   }
   function bindClose(m) { m.querySelectorAll("[data-close]").forEach(function (b) { b.onclick = function () { closeModal(); }; }); }
 
-  function ackModal(next) {
-    var expired = ackState() === "expired";
-    var intro = expired
-      ? '<div class="badbox"><b>Your acknowledgment expired on ' + today(-1) + '.</b><br>Renew it to open new hard-to-borrow shorts. Your existing positions aren’t affected.</div>'
-      : '<p style="margin:0" class="muted">Read this before your first hard-to-borrow short. You will be asked to renew every 30 days.</p>';
-    openModal('<div class="mhead"><h3>Hard-to-borrow short selling: risk acknowledgment</h3><button class="x" aria-label="Close" data-close>&times;</button></div><div class="mbody">' + intro +
-      '<div class="scroll" id="ackScroll" tabindex="0"><p style="margin:0">Short selling hard-to-borrow stocks carries risks that go beyond ordinary short selling.</p><ul>' +
-      "<li><b>Unlimited loss.</b> A stock’s price can rise without limit, so losses on a short are theoretically unlimited.</li>" +
-      "<li><b>Variable daily fee.</b> The borrow fee is an annualized rate that accrues daily. It can change at any time and can spike.</li>" +
-      "<li><b>The rate is not guaranteed.</b> The current rate on your order ticket can change at any time, even immediately after you submit, so you may be charged a different rate than the one shown.</li>" +
-      "<li><b>Recall and buy-in.</b> Shares can be recalled. If they can’t be replaced, your short can be closed out, possibly at an unfavorable price.</li>" +
-      "<li><b>Squeezes and margin calls.</b> Fast price moves can trigger margin calls and forced liquidation.</li>" +
-      "<li><b>Threshold-list names.</b> Stocks on the Reg SHO threshold list carry a higher risk of being bought in.</li>" +
-      "<li><b>Halted stocks.</b> A short in a halted stock keeps accruing charges even when you can’t cover.</li>" +
-      "<li><b>Alerts are best-effort.</b> We may alert you when a rate changes, but alerts can be delayed or fail. You remain responsible for monitoring your positions.</li>" +
-      '</ul><p style="margin:0">By signing, you confirm you have read and understood these risks. A signed copy is saved to your account.</p></div>' +
-      '<label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="ackChk" disabled> I understand and accept these risks</label><div class="small muted" id="ackHint">Scroll to the end to continue.</div></div>' +
-      '<div class="mfoot"><button class="btn" data-close>Cancel</button><button class="btn amber" id="ackSign" disabled>Sign and continue</button></div>', true, function (m) {
-        bindClose(m);
-        var sc = m.querySelector("#ackScroll"), chk = m.querySelector("#ackChk"), sign = m.querySelector("#ackSign"), hint = m.querySelector("#ackHint");
-        function check() { if (sc.scrollTop + sc.clientHeight >= sc.scrollHeight - 4) { chk.disabled = false; hint.textContent = "Disclosure v1. Valid for 30 days."; } }
-        sc.addEventListener("scroll", check); check();
-        chk.onchange = function () { sign.disabled = !chk.checked; };
-        sign.onclick = function () {
-          S.demo.ack = "current"; S.ackAt = new Date();
-          toast("Acknowledgment signed", "Saved to your account. Valid until " + today(30) + ".", null, true);
-          closeModal(); next();
-        };
-      });
-  }
-
-  /* ---------- ticket ---------- */
   function openTicket(sym, qty, type) {
     var s = SYMS[sym];
-    S.ticket = { sym: sym, qty: qty, type: type, limit: s.price, tif: "Day", session: "ext", rate: s.rate, prevRate: null, status: "live", expiresAt: Date.now() + S.demo.timer * 1000, needConfirm: false, confirmed: true, expired: false };
+    S.ticket = { sym: sym, qty: qty, type: type, limit: s.price, tif: "Day", session: "ext", rate: s.rate, prevRate: null, status: "live", refreshAt: Date.now() + S.demo.timer * 1000, needConfirm: false, confirmed: true, phase: "check", offerQty: 0, drifted: false, busy: false };
+    S.popOpen = false;
     renderTicket(true);
     startTick();
   }
   function stale() { return S.demo.data === "stale"; }
+
+  function stepsHtml(t) {
+    var names = ["Order details", "Locate", "Submit"];
+    var idx = { check: 0, requesting: 1, norshares: 1, offer: 2 }[t.phase];
+    return '<ol class="steps" aria-label="Progress">' + names.map(function (n, i) {
+      var c = i < idx ? "done" : (i === idx ? (t.phase === "norshares" ? "bad" : "now") : "");
+      return '<li class="' + c + '"' + (i === idx ? ' aria-current="step"' : "") + ">" + n + "</li>";
+    }).join("") + "</ol>";
+  }
+  var HTB_NO = { "Stop limit": 1, "Trailing stop": 1, "GTC": 1, "GTD": 1 };
+  function optHtml(o, cur) {
+    var no = HTB_NO[o];
+    return '<option value="' + o + '"' + (o === cur ? " selected" : "") + (no ? " disabled" : "") + ">" + o + (no ? " (not available for HTB)" : "") + "</option>";
+  }
+  var SESSIONS = [["reg", "Regular: 9:30 AM to 4 PM ET"], ["ext", "Extended: 4 AM to 8 PM ET"], ["on", "Overnight (not available for HTB)", true]];
+  var SES_SHORT = { reg: "Regular", ext: "Extended", on: "Overnight" };
+  function rw(label, val, id, cls) {
+    return '<div class="rw' + (cls ? " " + cls : "") + '">' + (id ? '<label for="' + id + '">' + label + "</label>" : "<span>" + label + "</span>") + "<span>" + val + "</span></div>";
+  }
+
+  /* The order ticket lives in the right-hand panel (no popup): Order details, Locate, Submit. */
   function renderTicket(focusFirst) {
-    var t = S.ticket; if (!t) return; var s = SYMS[t.sym];
+    var t = S.ticket; if (!t) return;
+    var s = SYMS[t.sym], ph = t.phase, edit = ph === "check";
     var px = t.type === "Market" ? s.ask : (+t.limit || s.price);
-    var est = charge(t.qty, px, t.rate);
-    var left = Math.max(0, Math.ceil((t.expiresAt - Date.now()) / 1000));
+    var q = ph === "offer" ? t.offerQty : t.qty;
+    var est = charge(q, px, t.rate);
     var checking = t.status === "checking";
-    var costHtml;
-    if (stale()) costHtml = '<div class="badbox"><b>Current rate unavailable.</b> Borrow data for ' + t.sym + ' is out of date, so we can’t show a rate. New hard-to-borrow shorts in this name are blocked until it refreshes.</div>';
-    else if (checking) costHtml = '<div class="cost"><div class="r"><span><span class="spinner"></span>Checking borrow…</span></div></div>';
-    else costHtml = '<div class="cost"><div class="r"><span>Current rate</span><b>' + fmt(t.rate, 1) + '% annualized</b></div><div class="r"><span>Estimated overnight charge</span><b>' + money(est) + '</b></div><div class="f">' + fmt(t.qty, 0) + " shares &times; $" + fmt(px) + " &times; " + fmt(t.rate, 1) + "% &divide; 360. A short opened and covered the same day has no borrow charge.</div></div>";
-    var timerHtml = (stale() || checking) ? "" : '<div class="timer" role="timer"><i style="width:' + Math.min(100, (left / S.demo.timer) * 100) + '%"></i><span>Rate shown as current for ' + Math.floor(left / 60) + ":" + String(left % 60).padStart(2, "0") + "</span></div>";
-    var changed = t.needConfirm ? '<div class="changed"><div><b>The rate changed:</b> ' + fmt(t.prevRate, 1) + "% &rarr; " + fmt(t.rate, 1) + '%</div><label><input type="checkbox" id="chgChk" ' + (t.confirmed ? "checked" : "") + '> I’ve seen the new rate</label></div>' : "";
-    var canSubmit = !stale() && !checking && !t.expired && (!t.needConfirm || t.confirmed);
-    var html = '<div class="mhead"><div><h3>Sell short ' + t.sym + " " + htbLabel(t.sym) + '</h3><div class="muted small">Last $' + fmt(s.price) + " &bull; Bid " + fmt(s.bid) + " &bull; Ask " + fmt(s.ask) + '</div></div><button class="x" aria-label="Cancel order" data-cancel>&times;</button></div>' +
-      '<div class="mbody"><div class="grid2"><div class="fld"><label for="tQty">Quantity</label><input id="tQty" type="number" min="1" value="' + t.qty + '"></div>' +
-      '<div class="fld"><label for="tType">Order type</label><select id="tType">' + ["Market", "Limit", "Stop", "Stop limit", "Trailing stop"].map(function (o) { return "<option" + (o === t.type ? " selected" : "") + ">" + o + "</option>"; }).join("") + "</select></div>" +
-      (t.type !== "Market" && t.type !== "Trailing stop" ? '<div class="fld"><label for="tLim">' + (t.type === "Limit" ? "Limit price" : "Price") + '</label><input id="tLim" type="number" step="0.01" value="' + t.limit + '"></div>' : "") +
-      '<div class="fld"><label for="tTif">Time in force</label><select id="tTif">' + ["Day", "IOC", "FOK", "At the close", "GTC", "GTD"].map(function (o) { return "<option" + (o === t.tif ? " selected" : "") + ">" + o + "</option>"; }).join("") + "</select></div>" +
-      '<div class="fld"><label for="tSes">Session</label><select id="tSes"><option value="ext"' + (t.session === "ext" ? " selected" : "") + '>Extended: 4 AM to 8 PM ET</option><option value="on"' + (t.session === "on" ? " selected" : "") + ">Overnight</option></select></div></div>" +
-      costHtml + timerHtml + changed +
-      '<div class="warnbox"><b>Before you submit</b><ul><li>Losses on a short are theoretically unlimited.</li><li>This is the current rate. It can change at any time, even right after you submit.</li><li>Shares can be recalled, which can force a buy-in.</li>' + (s.thr ? "<li>This stock is on the Reg SHO threshold list, which carries a higher risk of being bought in.</li>" : "") + "</ul></div></div>" +
-      '<div class="mfoot"><button class="btn" data-cancel>Cancel</button><button class="btn primary" id="tSubmit"' + (canSubmit ? "" : " disabled") + ">Submit short</button></div>" +
-      (t.expired ? '<div class="overlay" role="alertdialog" aria-label="Rate timer expired"><h4>Timer expired</h4><p>The rate may have changed. Refresh the rate to continue, or cancel the order.</p><div class="acts"><button class="btn amber" id="tRefresh">Refresh rate</button><button class="btn" data-cancel>Cancel order</button></div></div>' : "");
+    var rateOk = !stale() && !checking && (!t.needConfirm || t.confirmed);
+    var dash = ph === "requesting";
+    var limitLike = t.type !== "Market" && t.type !== "Trailing stop";
+
+    var rows = rw("Quantity", edit ? '<input id="tQty" type="number" min="1" value="' + t.qty + '">' : fmt(q, 0) + (ph === "offer" && t.offerQty < t.qty ? ' <small class="dim">of ' + fmt(t.qty, 0) + "</small>" : ""), edit ? "tQty" : "");
+    rows += rw("Order type", edit ? '<select id="tType">' + ["Market", "Limit", "Stop", "Stop limit", "Trailing stop"].map(function (o) { return optHtml(o, t.type); }).join("") + "</select>" : esc(t.type), edit ? "tType" : "");
+    rows += limitLike
+      ? rw(t.type === "Limit" ? "Limit price" : "Price", edit ? '<input id="tLim" type="number" step="0.01" value="' + t.limit + '">' : "$" + fmt(+t.limit || s.price), edit ? "tLim" : "")
+      : rw("Market Price", "$" + fmt(px));
+    rows += rw("Time in force", edit ? '<select id="tTif">' + ["Day", "IOC", "FOK", "At the close", "GTC", "GTD"].map(function (o) { return optHtml(o, t.tif); }).join("") + "</select>" : esc(t.tif), edit ? "tTif" : "");
+    rows += rw("Session", edit ? '<select id="tSes">' + SESSIONS.map(function (o) { return '<option value="' + o[0] + '"' + (o[0] === t.session ? " selected" : "") + (o[2] ? " disabled" : "") + ">" + o[1] + "</option>"; }).join("") + "</select>" : SES_SHORT[t.session], edit ? "tSes" : "");
+    rows += rw("Total Cost (est.)", money(q * px), "", "tot");
+
+    var ratecard = stale()
+      ? '<div class="badbox"><b>Current rate unavailable.</b> Borrow data for ' + t.sym + " is out of date, so we can’t show a rate. New hard-to-borrow shorts in this name are blocked until it refreshes.</div>"
+      : '<div class="rate"><div class="rw"><span>Est. borrow rate</span><span class="apr">' + (dash ? "—" : fmt(t.rate, 1) + "% APR") + "</span></div>" +
+        '<div class="rw"><span>Est. overnight borrow charge</span><span>' + (dash ? "—" : "<b>" + money(est) + '</b> <small class="dim">per day</small>') + "</span></div>" +
+        '<div class="note">Borrow rate is indicative and can change daily while the position is held.</div></div>';
+
+    var status = "";
+    if (ph === "requesting") status = '<div class="ratestat" role="status"><span class="spinner" aria-hidden="true"></span><span><b>Requesting a locate for ' + fmt(t.qty, 0) + " shares.</b> This usually takes a few seconds.</span></div>";
+    else if (!stale() && (ph === "check" || ph === "offer")) {
+      status = checking
+        ? '<div class="ratestat" role="status"><span class="spinner" aria-hidden="true"></span>Updating the rate…</div>'
+        : '<div class="ratestat"><span class="dot" aria-hidden="true"></span><span>Rate is up to date. We refresh it automatically. <button class="linkbtn" id="tRefresh" type="button">Refresh now</button></span></div>';
+    }
+    var changed = !t.needConfirm ? "" : t.confirmed
+      ? '<div class="accepted' + (t.fresh ? " fresh" : "") + '" role="status"><span class="tick" aria-hidden="true">&#10003;</span><span><b>New rate accepted:</b> ' + fmt(t.prevRate, 1) + "% &rarr; " + fmt(t.rate, 1) + "% annualized</span></div>"
+      : '<div class="changed" role="status"><div><b>The rate was updated:</b> ' + fmt(t.prevRate, 1) + "% &rarr; " + fmt(t.rate, 1) + '%. Review it before you continue.</div><div><button class="btn amber" id="chgAccept" type="button">Accept new rate</button></div></div>';
+    t.fresh = false;
+    var warn = '<div class="warnbox"><b>Before you submit</b><ul><li>Losses on a short are theoretically unlimited.</li><li>This is the current rate. It can change at any time, even right after you submit.</li><li>Shares can be recalled, which can force a buy-in.</li>' + (s.thr ? "<li>This stock is on the Reg SHO threshold list, which carries a higher risk of being bought in.</li>" : "") + "</ul></div>";
+    var partial = ph === "offer" && t.offerQty < t.qty
+      ? '<div class="changed" role="status"><div><b>Only ' + fmt(t.offerQty, 0) + " of " + fmt(t.qty, 0) + " shares are available.</b> You can submit the smaller amount or go back and edit.</div></div>" : "";
+    var hint = "";
+
+    var arrow = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>';
+    var back = function (label) { return '<button class="back" id="tBack" type="button" aria-label="' + label + '" title="' + label + '">' + arrow + "</button>"; };
+    var spin = '<span class="spinner" aria-hidden="true"></span>';
+    var panel, foot;
+    if (ph === "norshares") {
+      panel = '<div class="badbox" role="alert"><b>No shares are available to borrow for ' + t.sym + " right now.</b> Your order has not been placed and nothing was borrowed. Try again later or choose another stock.</div>";
+      foot = back("Edit order") + '<button class="go" id="tClose" type="button">Close</button>';
+    } else {
+      panel = partial + ratecard + status + changed + (ph === "offer" ? warn : "");
+      if (ph === "check") foot = back("Cancel order") + '<button class="go locate" id="tLocate" type="button"' + (rateOk && !t.busy && t.qty >= 1 ? "" : " disabled") + ">" + (t.busy ? spin + "Checking order…" : "Request locate") + "</button>";
+      else if (ph === "requesting") foot = back("Cancel order") + '<button class="go locate" type="button" disabled>' + spin + "Requesting locate…</button>";
+      else foot = back("Edit order") + '<button class="go submit" id="tSubmit" type="button"' + (rateOk && !t.busy ? "" : " disabled") + ">" + (t.busy ? spin + "Submitting…" : "Submit") + "</button>";
+    }
+
+    var html = '<div class="tk"><div class="card"><h3>Short ' + esc(t.type) + ' Order</h3>' +
+      '<div class="sym"><b>' + t.sym + "</b>" + htbLabel(t.sym) + "<small>" + esc(s.name) + " | " + s.exch + "</small><small>Last $" + fmt(s.price) + " &bull; Bid " + fmt(s.bid) + " &bull; Ask " + fmt(s.ask) + "</small></div>" +
+      stepsHtml(t) + '<div class="rows">' + rows + "</div>" + panel + hint + '<div class="foot">' + foot + "</div></div></div>";
+
     var keepFocus = document.activeElement && document.activeElement.id;
-    openModal(html, true, function (m) {
-      m.querySelectorAll("[data-cancel]").forEach(function (b) { b.onclick = function () { addOrder("Sell short", t.sym, t.qty, t.type, t.tif, "Canceled"); closeModal(); renderCenter(); }; });
-      var bind = function (id, key, num) { var el = m.querySelector("#" + id); if (!el) return; el.onchange = function () { t[key] = num ? (+el.value || 1) : el.value; onTicketChange(); }; };
-      bind("tQty", "qty", true); bind("tType", "type"); bind("tLim", "limit", true); bind("tTif", "tif"); bind("tSes", "session");
-      var chk = m.querySelector("#chgChk"); if (chk) chk.onchange = function () { t.confirmed = chk.checked; renderTicket(); };
-      var rf = m.querySelector("#tRefresh"); if (rf) rf.onclick = refreshRate;
-      var sub = m.querySelector("#tSubmit"); if (sub) sub.onclick = submitTicket;
-      if (keepFocus && !focusFirst) { var f = m.querySelector("#" + keepFocus); if (f && f.focus) f.focus(); }
-    });
+    var side = $("side");
+    side.innerHTML = html;
+
+    var bind = function (id, key, num) { var el = side.querySelector("#" + id); if (!el) return; el.onchange = function () { t[key] = num ? (+el.value || 1) : el.value; onTicketChange(); }; };
+    bind("tQty", "qty", true); bind("tType", "type"); bind("tLim", "limit", true); bind("tTif", "tif"); bind("tSes", "session");
+    var on = function (id, fn) { var el = side.querySelector("#" + id); if (el) el.onclick = fn; };
+    on("tRefresh", refreshRate); on("tLocate", checkOrder); on("tSubmit", submitTicket);
+    on("tBack", function () { if (ph === "check" || ph === "requesting") cancelTicket(); else editOrder(); });
+    on("tClose", cancelTicket);
+    on("chgAccept", function () { t.confirmed = true; t.fresh = true; renderTicket(true); var p = side.querySelector(".go:not([disabled])"); if (p) p.focus(); });
+
+    if (focusFirst) {
+      side.scrollTop = 0;
+      var first = side.querySelector(edit ? "#tQty" : ".go:not([disabled])"); if (first) first.focus();
+    } else if (keepFocus) {
+      var f = side.querySelector("#" + keepFocus); if (f && f.focus) f.focus();
+    }
+  }
+  function editOrder() {
+    var t = S.ticket; if (!t) return;
+    t.phase = "check"; t.offerQty = 0; t.refreshAt = Date.now() + S.demo.timer * 1000; renderTicket(true);
+  }
+  function cancelTicket() {
+    if (!S.ticket) return;
+    closeModal();
   }
   function onTicketChange() {
-    var t = S.ticket; t.status = "checking"; t.expired = false; renderTicket();
+    var t = S.ticket; t.status = "checking"; renderTicket();
     setTimeout(function () {
-      if (!S.ticket) return;
-      t.status = "live"; t.needConfirm = false; t.confirmed = true; t.expiresAt = Date.now() + S.demo.timer * 1000; renderTicket();
+      if (S.ticket !== t) return;
+      t.status = "live"; t.needConfirm = false; t.confirmed = true; t.refreshAt = Date.now() + S.demo.timer * 1000; renderTicket();
     }, 700);
   }
+
+  /* The rate refreshes on its own. There is no countdown and no blocking screen:
+     if the rate moved, the customer sees a short note and confirms they've seen it. */
   function refreshRate() {
-    var t = S.ticket, s = SYMS[t.sym]; t.status = "checking"; t.expired = false; renderTicket();
+    var t = S.ticket, s = SYMS[t.sym]; t.status = "checking"; renderTicket();
     setTimeout(function () {
-      if (!S.ticket) return;
+      if (S.ticket !== t) return;
       var old = t.rate;
-      if (S.demo.drift) { s.rate = Math.round((s.rate + (s.thr ? 9 : 3.5)) * 10) / 10; }
+      if (S.demo.drift && !t.drifted) { s.rate = Math.round((s.rate + (s.thr ? 9 : 3.5)) * 10) / 10; t.drifted = true; }
       t.rate = s.rate;
-      renderSide(); t.status = "live"; t.prevRate = old; t.needConfirm = t.rate !== old; t.confirmed = !t.needConfirm;
-      t.expiresAt = Date.now() + S.demo.timer * 1000; renderTicket();
+      t.status = "live";
+      if (t.rate !== old) { t.prevRate = old; t.needConfirm = true; t.confirmed = false; }
+      t.refreshAt = Date.now() + S.demo.timer * 1000; renderTicket();
     }, 700);
   }
   function startTick() {
     stopTick();
     S.tick = setInterval(function () {
-      var t = S.ticket; if (!t || t.status === "checking" || stale()) return;
-      if (!t.expired && Date.now() >= t.expiresAt) { t.expired = true; renderTicket(); return; }
-      if (!t.expired) {
-        var left = Math.max(0, Math.ceil((t.expiresAt - Date.now()) / 1000)), bar = document.querySelector(".timer i"), lab = document.querySelector(".timer span");
-        if (bar) bar.style.width = Math.min(100, (left / S.demo.timer) * 100) + "%";
-        if (lab) lab.textContent = "Rate shown as current for " + Math.floor(left / 60) + ":" + String(left % 60).padStart(2, "0");
-      }
-    }, 250);
+      var t = S.ticket; if (!t || t.status === "checking" || t.busy || stale()) return;
+      if (t.phase !== "check" && t.phase !== "offer") return;
+      if (Date.now() < t.refreshAt) return;
+      var a = document.activeElement;
+      if (a && a.closest && a.closest("#side") && /^(INPUT|SELECT)$/.test(a.tagName) && a.type !== "checkbox" && !a.disabled) { t.refreshAt = Date.now() + 3000; return; }
+      refreshRate();
+    }, 500);
   }
   function stopTick() { if (S.tick) { clearInterval(S.tick); S.tick = null; } }
 
-  function submitTicket() {
-    var t = S.ticket, s = SYMS[t.sym];
-    var btn = $("tSubmit"); if (btn) { btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>Checking borrow…'; }
+  /* ---------- check, locate, review ---------- */
+  function checkOrder() {
+    var t = S.ticket; if (!t) return;
+    t.busy = true; renderTicket();
     setTimeout(function () {
-      if (!S.ticket) return;
+      if (S.ticket !== t) return;
       var reason = null, title = "Order rejected";
       if (t.type === "Trailing stop") reason = "Trailing stop orders aren’t supported for hard-to-borrow shorts. Use a Market or Limit order.";
       else if (t.type === "Stop limit" && t.session === "ext") reason = "Extended-hours stop limit orders aren’t supported for hard-to-borrow shorts. Use a Limit order.";
       else if (t.tif === "GTC" || t.tif === "GTD") reason = t.tif + " orders aren’t accepted for hard-to-borrow shorts because borrow is confirmed one trading day at a time. Use a Day order.";
-      else if (t.session === "on") reason = "Hard-to-borrow shorts can’t be placed in the overnight session. You can place them from 4:00 AM to 8:00 PM ET.";
       else if (S.demo.long && t.qty > 100) { title = "One order can’t flip your position"; reason = "You hold 100 shares long in " + t.sym + ". Sell your long first, then short in a separate order."; }
-      else {
-        var avail = S.demo.avail === "none" ? 0 : S.demo.avail === "partial" ? Math.floor(t.qty * 0.4) : Math.max(s.avail, t.qty);
-        if (avail < t.qty) { title = "Not enough shares to borrow"; reason = "We could borrow " + fmt(avail, 0) + " of the " + fmt(t.qty, 0) + " shares you asked for. The whole order was rejected; we don’t borrow part of an order."; }
-      }
+      t.busy = false;
       if (reason) { var q = t.qty, ty = t.type, tf = t.tif; addOrder("Sell short", t.sym, q, ty, tf, "Rejected", title); closeModal(); rejectModal(t.sym, q, title, reason, false); renderCenter(); return; }
-      var px = t.type === "Market" ? s.ask : (+t.limit || s.price);
-      S.positions.push({ sym: t.sym, qty: -t.qty, avg: px, rate: t.rate, openRate: t.rate, tier: 0, flash: true });
-      addOrder("Sell short", t.sym, t.qty, t.type, t.tif, "Accepted");
+      requestLocate();
+    }, 600);
+  }
+  function requestLocate() {
+    var t = S.ticket, s = SYMS[t.sym];
+    t.phase = "requesting"; renderTicket();
+    setTimeout(function () {
+      if (S.ticket !== t || t.phase !== "requesting") return;
+      var avail = S.demo.avail === "none" ? 0 : S.demo.avail === "partial" ? Math.floor(t.qty * 0.4) : Math.max(s.avail, t.qty);
+      if (avail < 1) { t.phase = "norshares"; renderTicket(); return; }
+      t.offerQty = Math.min(t.qty, avail); t.phase = "offer"; t.refreshAt = Date.now() + S.demo.timer * 1000; renderTicket();
+    }, 1500);
+  }
+
+  function submitTicket() {
+    var t = S.ticket, s = SYMS[t.sym]; if (!t) return;
+    t.busy = true; renderTicket();
+    setTimeout(function () {
+      if (S.ticket !== t) return;
+      var q = t.offerQty, px = t.type === "Market" ? s.ask : (+t.limit || s.price);
+      S.positions.push({ sym: t.sym, qty: -q, avg: px, rate: t.rate, openRate: t.rate, tier: 0, flash: true });
+      addOrder("Sell short", t.sym, q, t.type, t.tif, "Accepted");
       closeModal(); renderAll();
-      toast("Short order accepted", "Sold short " + fmt(t.qty, 0) + " " + t.sym + ". Rate shown: " + fmt(t.rate, 1) + "%. It can change at any time, even right after submit.", null, true);
+      toast("Short order accepted", "Sold short " + fmt(q, 0) + " " + t.sym + ". Rate shown: " + fmt(t.rate, 1) + "%. It can change at any time, even right after you submit.", null, true);
     }, 900);
   }
 
   function rejectModal(sym, qty, title, reason, notShortable) {
     openModal('<div class="mhead"><h3>' + esc(title) + '</h3><button class="x" aria-label="Close" data-close>&times;</button></div><div class="mbody"><div class="badbox">' + esc(reason) + "</div>" +
       (notShortable ? "" : '<p class="muted small" style="margin:0">Rejected orders aren’t charged. Nothing was borrowed.</p>') + "</div>" +
-      '<div class="mfoot"><button class="btn" id="notify">Notify me when available</button><button class="btn primary" data-close>' + (notShortable ? "Close" : "Edit order") + "</button></div>", false, function (m) {
+      '<div class="mfoot"><button class="btn primary" data-close>' + (notShortable ? "Close" : "Edit order") + "</button></div>", false, function (m) {
         bindClose(m);
-        m.querySelector("#notify").onclick = function () { closeModal(); toast("We’ll tell you", "You’ll get a notification when " + sym + " has shares available to short.", null, true); };
         if (!notShortable) m.querySelector(".btn.primary").onclick = function () { closeModal(); openTicket(sym, qty, "Market"); };
       });
   }
@@ -698,12 +823,11 @@ td.num, th.num { text-align: right; }
     function opts(key, list) { return '<div class="opts">' + list.map(function (o) { return '<button data-k="' + key + '" data-v="' + o[0] + '" class="' + (String(S.demo[key]) === String(o[0]) ? "on" : "") + '">' + o[1] + "</button>"; }).join("") + "</div>"; }
     $("ctl").innerHTML =
       '<div><h5>Jump to a screen</h5><div class="opts">' +
-      [["1", "1 Stock page and label"], ["2", "2 Risk acknowledgment"], ["3", "3 Order ticket"], ["4", "4 Position and ledger"], ["5", "5 Rate alert"], ["6", "6 Timer expired"], ["7a", "7 Not enough shares"], ["7b", "7 GTC rejected"], ["7c", "7 Overnight rejected"], ["7d", "7 Recall"], ["7e", "7 Acknowledgment expired"], ["7f", "7 Not eligible"]].map(function (j) { return '<button class="go" data-jump="' + j[0] + '">' + j[1] + "</button>"; }).join("") + "</div></div>" +
+      [["1", "1 Stock page and label"], ["3", "3 Order ticket"], ["3b", "3 Locate offer"], ["4", "4 Position and activity"], ["5", "5 Rate alert"], ["6", "6 Rate updated"], ["7a", "7 Partial locate"], ["7g", "7 No shares to borrow"], ["7b", "7 GTC rejected"], ["7d", "7 Recall"], ["7f", "7 Not eligible"]].map(function (j) { return '<button class="go" data-jump="' + j[0] + '">' + j[1] + "</button>"; }).join("") + "</div></div>" +
       "<div><h5>Account eligibility</h5>" + opts("eligible", [[true, "Eligible"], [false, "Not eligible"]]) + "</div>" +
-      "<div><h5>Risk acknowledgment</h5>" + opts("ack", [["none", "Not signed"], ["current", "Current"], ["expiring", "Expiring"], ["expired", "Expired"]]) + "</div>" +
       "<div><h5>Shares available to borrow</h5>" + opts("avail", [["full", "Full"], ["partial", "Partial"], ["none", "None"]]) + "</div>" +
       "<div><h5>Borrow rate data</h5>" + opts("data", [["fresh", "Fresh"], ["stale", "Stale"]]) + "</div>" +
-      "<div><h5>Rate timer</h5>" + opts("timer", [[8, "8 sec"], [20, "20 sec"], [45, "45 sec"]]) + "</div>" +
+      "<div><h5>Rate refresh interval</h5>" + opts("timer", [[8, "8 sec"], [30, "30 sec"], [45, "45 sec"]]) + "</div>" +
       "<div><h5>Rate moves on refresh</h5>" + opts("drift", [[true, "Yes"], [false, "No"]]) + "</div>" +
       "<div><h5>Existing long position</h5>" + opts("long", [[false, "None"], [true, "100 shares"]]) + "</div>" +
       '<div><h5>Simulate</h5><div class="opts"><button class="go" data-sim="up">Rate increase alert</button><button class="go" data-sim="recall">Recall notice</button><button class="go" data-sim="night">Overnight accrual</button><button class="go" data-sim="reset">Reset demo</button></div></div>' +
@@ -712,14 +836,14 @@ td.num, th.num { text-align: right; }
   $("ctlBtn").onclick = function () { S.ctlOpen = !S.ctlOpen; $("ctl").hidden = !S.ctlOpen; $("ctlBtn").setAttribute("aria-expanded", S.ctlOpen); if (S.ctlOpen) renderCtl(); };
   $("ctl").addEventListener("click", function (e) {
     var b = e.target.closest("button"); if (!b) return;
-    if (b.dataset.k) { var v = b.dataset.v; S.demo[b.dataset.k] = v === "true" ? true : v === "false" ? false : (b.dataset.k === "timer" ? +v : v); if (b.dataset.k === "ack" && v !== "none") S.ackAt = new Date(); renderCtl(); renderAll(); return; }
+    if (b.dataset.k) { var v = b.dataset.v; S.demo[b.dataset.k] = v === "true" ? true : v === "false" ? false : (b.dataset.k === "timer" ? +v : v); renderCtl(); renderAll(); return; }
     if (b.dataset.sim) { var k = b.dataset.sim; if (k === "up") simRateUp(); if (k === "recall") simRecall(); if (k === "night") simOvernight(); if (k === "reset") resetDemo(); renderCtl(); return; }
     if (b.dataset.jump) jump(b.dataset.jump);
   });
   function resetDemo() {
     SYMS.ZRXT.rate = 42.0; SYMS.KLMN.rate = 118.0;
     S.positions = []; S.orders = []; S.ledger = []; S.banners = []; S.tab = "positions"; S.sym = "ZRXT"; S.qty = 10;
-    S.demo = { eligible: true, ack: "none", avail: "full", data: "fresh", timer: 20, drift: true, long: false };
+    S.demo = { eligible: true, avail: "full", data: "fresh", timer: 30, drift: true, long: false };
     closeModal(); renderAll();
   }
   function jump(k) {
@@ -728,16 +852,15 @@ td.num, th.num { text-align: right; }
     S.demo.eligible = true; S.demo.data = "fresh"; S.demo.long = false; S.demo.avail = "full";
     SYMS.ZRXT.rate = 42.0; SYMS.KLMN.rate = 118.0;
     if (k === "1") { S.sym = "ZRXT"; S.popOpen = true; S.positions = []; renderAll(); return; }
-    if (k === "2") { S.sym = "ZRXT"; S.demo.ack = "none"; renderAll(); startShort("ZRXT", 1000, "Market"); return; }
-    if (k === "3") { S.sym = "ZRXT"; S.demo.ack = "current"; renderAll(); openTicket("ZRXT", 1000, "Market"); return; }
-    if (k === "4") { S.positions = []; S.ledger = []; S.banners = []; ensurePosition("ZRXT"); S.sym = "ZRXT"; S.demo.ack = "current"; simOvernight(); return; }
-    if (k === "5") { S.positions = []; S.banners = []; ensurePosition("ZRXT"); S.sym = "ZRXT"; S.demo.ack = "current"; simRateUp(); return; }
-    if (k === "6") { S.sym = "ZRXT"; S.demo.ack = "current"; renderAll(); openTicket("ZRXT", 1000, "Market"); S.ticket.expiresAt = Date.now() - 1; S.ticket.expired = true; renderTicket(); return; }
-    if (k === "7a") { S.sym = "KLMN"; S.demo.ack = "current"; S.demo.avail = "partial"; renderAll(); openTicket("KLMN", 5000, "Market"); submitTicket(); return; }
-    if (k === "7b") { S.sym = "ZRXT"; S.demo.ack = "current"; renderAll(); openTicket("ZRXT", 1000, "Limit"); S.ticket.tif = "GTC"; submitTicket(); return; }
-    if (k === "7c") { S.sym = "ZRXT"; S.demo.ack = "current"; renderAll(); openTicket("ZRXT", 1000, "Market"); S.ticket.session = "on"; submitTicket(); return; }
-    if (k === "7d") { S.positions = []; S.banners = []; S.demo.ack = "current"; S.sym = "KLMN"; ensurePosition("KLMN"); simRecall(); return; }
-    if (k === "7e") { S.sym = "ZRXT"; S.demo.ack = "expired"; renderAll(); startShort("ZRXT", 1000, "Market"); return; }
+    if (k === "3") { S.sym = "ZRXT"; renderAll(); openTicket("ZRXT", 1000, "Market"); return; }
+    if (k === "4") { S.positions = []; S.ledger = []; S.banners = []; ensurePosition("ZRXT"); S.sym = "ZRXT"; simOvernight(); return; }
+    if (k === "5") { S.positions = []; S.banners = []; ensurePosition("ZRXT"); S.sym = "ZRXT"; simRateUp(); return; }
+    if (k === "3b") { S.sym = "ZRXT"; renderAll(); openTicket("ZRXT", 1000, "Market"); checkOrder(); return; }
+    if (k === "6") { S.sym = "ZRXT"; S.demo.drift = true; renderAll(); openTicket("ZRXT", 1000, "Market"); refreshRate(); return; }
+    if (k === "7a") { S.sym = "KLMN"; S.demo.avail = "partial"; renderAll(); openTicket("KLMN", 5000, "Market"); checkOrder(); return; }
+    if (k === "7g") { S.sym = "ZRXT"; S.demo.avail = "none"; renderAll(); openTicket("ZRXT", 1000, "Market"); checkOrder(); return; }
+    if (k === "7b") { S.sym = "ZRXT"; renderAll(); openTicket("ZRXT", 1000, "Limit"); S.ticket.tif = "GTC"; checkOrder(); return; }
+    if (k === "7d") { S.positions = []; S.banners = []; S.sym = "KLMN"; ensurePosition("KLMN"); simRecall(); return; }
     if (k === "7f") { S.sym = "ZRXT"; S.demo.eligible = false; renderAll(); startShort("ZRXT", 1000, "Market"); return; }
   }
 
