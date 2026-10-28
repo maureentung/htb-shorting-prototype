@@ -207,13 +207,62 @@ td.num, th.num { text-align: right; }
 .pop .l1 { display: flex; align-items: center; gap: 6px; font-weight: 600; }
 .pop .l2 { color: var(--on-dark-muted); font-size: 11px; }
 
+/* ---------- alerts panel ---------- */
+.rail button { position: relative; }
+.bdg { position: absolute; top: -5px; right: -6px; min-width: 15px; height: 15px; padding: 0 4px; border-radius: 8px; background: #e8892b; color: #141414; font-size: 9px; font-weight: 700; font-style: normal; line-height: 15px; text-align: center; }
+.bellfab { display: none; position: fixed; top: calc(10px + env(safe-area-inset-top, 0px)); left: 10px; z-index: 55; width: 38px; height: 38px; border: 0; border-radius: 50%; background: #1b1c1e; color: #ffffff; place-items: center; padding: 0; }
+.bellfab svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.alerts { position: fixed; top: 10px; bottom: 10px; left: 64px; width: min(400px, calc(100vw - 80px)); z-index: 70; background: var(--panel); color: var(--ink); border-radius: 28px; box-shadow: var(--shadow); padding: 22px 22px 0; display: flex; flex-direction: column; }
+.alerts .ahead { position: relative; display: flex; align-items: center; justify-content: space-between; }
+.alerts h2 { margin: 0; font-size: 26px; font-weight: 700; letter-spacing: -0.02em; outline: none; }
+.alerts .abtns { display: flex; gap: 8px; }
+.alerts .ibtn { width: 44px; height: 38px; border: 0; border-radius: 12px; background: var(--chip); color: var(--ink); display: grid; place-items: center; padding: 0; }
+.alerts .ibtn svg { width: 17px; height: 17px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.alerts .ibtn.on { background: color-mix(in srgb, var(--ink) 22%, var(--chip)); }
+.alerts .fwrap { position: relative; }
+.alerts .amenu { position: absolute; top: calc(100% + 10px); left: 0; z-index: 3; width: 290px; background: var(--panel); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); padding: 12px; }
+.alerts .aopt { display: flex; align-items: flex-start; gap: 12px; width: 100%; text-align: left; border: 1px solid var(--line); background: transparent; color: var(--ink); border-radius: 12px; padding: 12px; }
+.alerts .aopt:hover { background: var(--chip); }
+.alerts .acb { flex: none; width: 20px; height: 20px; border: 1.5px solid color-mix(in srgb, var(--ink) 25%, transparent); border-radius: 6px; display: grid; place-items: center; margin-top: 2px; }
+.alerts .acb.on { background: var(--ink); border-color: var(--ink); color: var(--panel); }
+.alerts .acb svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.alerts .aopt b { display: block; font-size: 14px; font-weight: 600; }
+.alerts .aopt small { display: block; margin-top: 2px; color: var(--muted); font-size: 12.5px; line-height: 1.35; }
+.alerts .asearch { margin-top: 14px; width: 100%; border: 1px solid var(--line); background: var(--chip); color: var(--ink); border-radius: 12px; padding: 10px 12px; font: inherit; font-size: 13px; }
+.alerts .atabs { display: flex; flex-wrap: wrap; gap: 4px 20px; margin-top: 18px; }
+.alerts .atab { border: 0; background: transparent; padding: 6px 0 9px; color: var(--muted); font-size: 14px; font-weight: 600; border-bottom: 2px solid transparent; }
+.alerts .atab.on { color: var(--ink); border-bottom-color: var(--ink); }
+.alerts .alist { flex: 1; overflow-y: auto; margin: 0 -22px; padding: 4px 22px 18px; }
+.alerts .aempty { height: 100%; min-height: 220px; display: grid; place-content: center; justify-items: center; gap: 10px; color: var(--muted); }
+.alerts .aempty svg { width: 44px; height: 44px; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; opacity: 0.7; }
+.alerts .aempty p { margin: 0; font-size: 14px; }
+.alerts .aitem { display: grid; grid-template-columns: 34px 1fr; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line); cursor: default; }
+.alerts .aico { width: 34px; height: 34px; border-radius: 10px; background: var(--chip); color: var(--ink); display: grid; place-items: center; }
+.alerts .aico svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.alerts .aico.alert { background: var(--warn-bg); color: var(--warn-ink); }
+.alerts .aico.crit { background: var(--bad-bg); color: var(--bad-ink); }
+.alerts .at { display: flex; align-items: center; gap: 6px; font-size: 13px; }
+.alerts .at b { font-weight: 500; }
+.alerts .aitem.unread .at b { font-weight: 700; }
+.alerts .at span { margin-left: auto; color: var(--muted); font-size: 11px; white-space: nowrap; }
+.alerts .udot { width: 8px; height: 8px; border-radius: 50%; background: #e8892b; flex: none; }
+.alerts .abody p { margin: 3px 0 0; color: var(--muted); font-size: 12.5px; line-height: 1.4; }
+.alerts .abody p b { color: var(--ink); }
+.alerts .aacts { margin-top: 10px; }
+.alerts .abtn { border: 0; border-radius: 10px; padding: 8px 12px; background: var(--chip); color: var(--ink); font-weight: 600; font-size: 12.5px; }
+.alerts .abtn:hover { background: var(--line); }
+.alerts .ares { margin-top: 8px; color: var(--muted); font-size: 11.5px; }
+@media (max-width: 760px) {
+  .bellfab { display: grid; }
+  .alerts { left: 8px; right: 8px; width: auto; top: 8px; bottom: 8px; }
+  .alerts .amenu { left: auto; right: 0; width: min(290px, calc(100vw - 48px)); }
+}
+
 /* ---------- banners & toasts ---------- */
-.banner { border-radius: 12px; padding: 10px 14px; display: flex; gap: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
-.banner.alert { background: var(--warn-bg); color: var(--warn-ink); }
-.banner.crit { background: var(--bad-bg); color: var(--bad-ink); }
-.banner .acts { display: flex; gap: 8px; }
-.banner button { border: 0; border-radius: 8px; padding: 6px 10px; font-weight: 600; background: rgba(0, 0, 0, 0.12); }
-.toasts { position: fixed; top: calc(12px + env(safe-area-inset-top, 0px)); right: 12px; z-index: 80; display: grid; gap: 8px; width: min(340px, calc(100vw - 24px)); }
+.toasts { position: fixed; top: calc(12px + env(safe-area-inset-top, 0px)); left: 64px; z-index: 80; display: grid; gap: 8px; width: min(340px, calc(100vw - 76px)); }
+@media (max-width: 760px) {
+  .toasts { left: 12px; top: calc(56px + env(safe-area-inset-top, 0px)); width: calc(100vw - 24px); }
+}
 .toast { background: #1b1c1e; color: #f2f3f5; border-radius: 16px; padding: 12px 14px; box-shadow: var(--shadow); display: grid; grid-template-columns: 30px 1fr; gap: 10px; border: 1px solid #333; }
 .toast .ico { width: 30px; height: 30px; border-radius: 8px; background: var(--amber); color: #141414; display: grid; place-items: center; font-weight: 800; }
 .toast .t { font-weight: 600; margin-bottom: 2px; display: flex; justify-content: space-between; gap: 8px; }
@@ -320,6 +369,7 @@ td.num, th.num { text-align: right; }
       <button aria-label="Launch" title="Launch"><svg viewBox="0 0 24 24"><path d="M5 19c1-4 4-7 8-9 2-1 5-1 6-1 0 1 0 4-1 6-2 4-5 7-9 8zM9 15l-4 4"/></svg></button>
     </div>
     <div class="group">
+      <button class="bellbtn" id="bellBtn" aria-label="Alerts" title="Alerts" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M6 17v-6a6 6 0 0 1 12 0v6l1.5 2h-15zM10 21h4"/></svg><i class="bdg" hidden></i></button>
       <button aria-label="Support" title="Support"><svg viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2M4 14h3v5H4zM17 14h3v5h-3z"/></svg></button>
       <button aria-label="Account" title="Account"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg></button>
       <button aria-label="Sign out" title="Sign out"><svg viewBox="0 0 24 24"><path d="M9 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h4M16 8l4 4-4 4M20 12H9"/></svg></button>
@@ -336,6 +386,8 @@ td.num, th.num { text-align: right; }
 
 <div class="toasts" id="toasts" aria-live="polite"></div>
 <div id="modalRoot"></div>
+<div id="alertsRoot"></div>
+<button class="bellbtn bellfab" id="bellFab" aria-label="Alerts" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M6 17v-6a6 6 0 0 1 12 0v6l1.5 2h-15zM10 21h4"/></svg><i class="bdg" hidden></i></button>
 <button class="ctlbtn" id="ctlBtn" aria-expanded="false">Prototype controls</button>
 <div class="ctl" id="ctl" hidden></div>
 
@@ -356,7 +408,7 @@ td.num, th.num { text-align: right; }
   var S = {
     sym: "ZRXT", qty: 10, tab: "positions", popOpen: false, ctlOpen: false,
     demo: { eligible: true, avail: "full", data: "fresh", timer: 30, drift: true, long: false },
-    positions: [], orders: [], ledger: [], banners: [],
+    positions: [], orders: [], ledger: [], alerts: [], alertSeq: 0, alertsOpen: false, alertTab: "all", alertQ: "", alertSearch: false, alertUnread: false, alertMenu: false,
     ticket: null, tick: null
   };
 
@@ -385,6 +437,87 @@ td.num, th.num { text-align: right; }
     setTimeout(function () { if (el.parentNode) el.remove(); }, acts && acts.length ? 14000 : 5000);
   }
 
+  /* ---------- alerts panel ---------- */
+  var ALERT_TABS = [["all", "All Alerts"], ["trades", "Trades"], ["account", "Account"], ["borrow", "Borrow"]];
+  var ALERT_ICON = {
+    borrow: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16l6-6 4 4 6-7M15 7h5v5"/></svg>',
+    trades: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h13M13 4l4 4-4 4M20 16H7M11 12l-4 4 4 4"/></svg>',
+    account: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg>'
+  };
+  function addAlert(cat, kind, title, body, opts) {
+    opts = opts || {};
+    S.alerts.unshift({ id: ++S.alertSeq, cat: cat, kind: kind, title: title, body: body, sym: opts.sym || "", cover: !!opts.cover, resolved: false, time: nowTime(), read: false });
+    renderBell(); if (S.alertsOpen) renderAlerts();
+  }
+  function renderBell() {
+    var n = S.alerts.filter(function (a) { return !a.read; }).length;
+    document.querySelectorAll(".bdg").forEach(function (el) { el.hidden = n === 0; el.textContent = n > 9 ? "9+" : String(n); });
+    document.querySelectorAll(".bellbtn").forEach(function (b) { b.setAttribute("aria-label", n ? "Alerts, " + n + " unread" : "Alerts"); b.setAttribute("aria-expanded", S.alertsOpen ? "true" : "false"); });
+  }
+  function openAlerts() { S.alertsOpen = true; S.alertsFresh = true; setTimeout(function () { S.alertsFresh = false; }, 0); renderAlerts(true); renderBell(); }
+  function closeAlerts() { S.alertsOpen = false; S.alertMenu = false; $("alertsRoot").innerHTML = ""; renderBell(); }
+  function alertMatches(a) {
+    if (S.alertTab !== "all" && a.cat !== S.alertTab) return false;
+    if (S.alertUnread && a.read) return false;
+    if (S.alertQ) { var hay = (a.title + " " + a.body.replace(/<[^>]+>/g, "") + " " + a.sym).toLowerCase(); if (hay.indexOf(S.alertQ.toLowerCase()) < 0) return false; }
+    return true;
+  }
+  function alertListHtml() {
+    var list = S.alerts.filter(alertMatches);
+    if (!list.length) {
+      return '<div class="aempty"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10l9-6 9 6v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M3 10l9 6 9-6"/></svg><p>' + (S.alertQ ? "No alerts match your search" : "You have no notifications") + "</p></div>";
+    }
+    return list.map(function (a) {
+      return '<article class="aitem' + (a.read ? "" : " unread") + '" data-aid="' + a.id + '">' +
+        '<div class="aico ' + a.kind + '">' + ALERT_ICON[a.cat] + "</div>" +
+        '<div class="abody"><div class="at"><b>' + esc(a.title) + "</b>" + (a.read ? "" : '<i class="udot" aria-label="Unread"></i>') + "<span>" + a.time + "</span></div><p>" + a.body + "</p>" +
+        (a.cover ? '<div class="aacts"><button class="abtn" data-acover="' + a.sym + '">Close or reduce</button></div>' : a.resolved ? '<div class="ares">Position closed</div>' : "") + "</div></article>";
+    }).join("");
+  }
+  function bindAlertList() {
+    var root = $("alertsRoot");
+    root.querySelectorAll(".aitem").forEach(function (el) {
+      el.onclick = function () {
+        var a = S.alerts.filter(function (x) { return x.id === +el.dataset.aid; })[0];
+        if (a && !a.read) { a.read = true; renderBell(); renderAlerts(); }
+      };
+    });
+    root.querySelectorAll("[data-acover]").forEach(function (b) {
+      b.onclick = function (e) {
+        e.stopPropagation();
+        var sym = b.dataset.acover;
+        S.alerts.forEach(function (a) { if (a.sym === sym) a.read = true; });
+        renderBell(); closeAlerts(); coverModal(sym);
+      };
+    });
+  }
+  function renderAlerts(focusPanel) {
+    var root = $("alertsRoot");
+    var tabs = ALERT_TABS.map(function (t) {
+      return '<button class="atab' + (S.alertTab === t[0] ? " on" : "") + '" role="tab" aria-selected="' + (S.alertTab === t[0]) + '" data-atab="' + t[0] + '">' + t[1] + "</button>";
+    }).join("");
+    var menu = S.alertMenu
+      ? '<div class="amenu" role="dialog" aria-label="Filter alerts"><button class="aopt" id="aUnread" type="button" role="checkbox" aria-checked="' + S.alertUnread + '"><span class="acb' + (S.alertUnread ? " on" : "") + '">' + (S.alertUnread ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>' : "") + '</span><span><b>Only unread</b><small>Hide alerts that you have already read</small></span></button></div>'
+      : "";
+    root.innerHTML = '<section class="alerts" role="dialog" aria-label="Alerts"><div class="ahead"><h2 tabindex="-1">Alerts</h2><div class="abtns">' +
+      '<button class="ibtn' + (S.alertSearch ? " on" : "") + '" id="aSearch" type="button" aria-label="Search alerts" aria-pressed="' + S.alertSearch + '"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4-4"/></svg></button>' +
+      '<span class="fwrap"><button class="ibtn' + (S.alertMenu || S.alertUnread ? " on" : "") + '" id="aFilter" type="button" aria-label="Filter alerts" aria-haspopup="dialog" aria-expanded="' + S.alertMenu + '"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14M8 12h8M11 16h2"/></svg></button>' + menu + '</span></div></div>' +
+      (S.alertSearch ? '<input class="asearch" id="aQ" type="search" placeholder="Search alerts" aria-label="Search alerts" value="' + esc(S.alertQ) + '">' : "") +
+      '<div class="atabs" role="tablist">' + tabs + '</div><div class="alist" id="alist">' + alertListHtml() + "</div></section>";
+    var sec = root.querySelector(".alerts");
+    root.querySelectorAll("[data-atab]").forEach(function (b) { b.onclick = function () { S.alertTab = b.dataset.atab; renderAlerts(); }; });
+    $("aSearch").onclick = function () { S.alertSearch = !S.alertSearch; if (!S.alertSearch) S.alertQ = ""; renderAlerts(); var q = $("aQ"); if (q) q.focus(); };
+    $("aFilter").onclick = function () { S.alertMenu = !S.alertMenu; renderAlerts(); };
+    var u = $("aUnread"); if (u) u.onclick = function () { S.alertUnread = !S.alertUnread; renderAlerts(); };
+    var q = $("aQ"); if (q) q.oninput = function () { S.alertQ = q.value; $("alist").innerHTML = alertListHtml(); bindAlertList(); };
+    sec.addEventListener("click", function (e) {
+      if (S.alertMenu && !e.target.closest(".amenu") && !e.target.closest("#aFilter")) { S.alertMenu = false; renderAlerts(); }
+    });
+    bindAlertList();
+    if (focusPanel) { var h = root.querySelector("h2"); if (h) h.focus(); }
+  }
+  document.querySelectorAll(".bellbtn").forEach(function (b) { b.onclick = function () { if (S.alertsOpen) closeAlerts(); else openAlerts(); }; });
+
   /* ---------- modal ---------- */
   function openModal(html, wide, onMount) {
     closeModal(true);
@@ -398,7 +531,7 @@ td.num, th.num { text-align: right; }
     $("modalRoot").innerHTML = "";
     if (!keepTicket) { stopTick(); var had = S.ticket; S.ticket = null; if (had) renderSide(); }
   }
-  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && ($("modalRoot").innerHTML || S.ticket)) closeModal(); });
+  document.addEventListener("keydown", function (e) { if (e.key !== "Escape") return; if (S.alertsOpen) { if (S.alertMenu) { S.alertMenu = false; renderAlerts(); } else closeAlerts(); return; } if ($("modalRoot").innerHTML || S.ticket) closeModal(); });
 
   /* ---------- render: account ---------- */
   function renderAcct() {
@@ -426,11 +559,6 @@ td.num, th.num { text-align: right; }
   /* ---------- render: center ---------- */
   function renderCenter() {
     var h = "";
-    S.banners.forEach(function (b, i) {
-      h += '<div class="banner ' + b.kind + '" role="alert"><div>' + b.html + '</div><div class="acts">' +
-        (b.sym ? '<button data-act="close" data-sym="' + b.sym + '">Close or reduce</button>' : "") +
-        '<button data-act="dismiss" data-i="' + i + '">Dismiss</button></div></div>';
-    });
     h += '<div class="card"><div class="chartbox"><span>No history available</span></div>' +
       '<div class="bar" style="margin-top:10px"><div class="big">$0<small>.00</small></div><div class="seg"><button>1W</button><button class="on">1M</button><button>6M</button><button>YTD</button><button>1Y</button></div></div></div>';
     h += '<div class="card"><div class="bar"><div class="seg" role="tablist">' +
@@ -511,6 +639,7 @@ td.num, th.num { text-align: right; }
 
   /* ---------- events ---------- */
   document.addEventListener("click", function (e) {
+    if (S.alertsOpen && !S.alertsFresh && !e.target.closest(".alerts, .bellbtn")) closeAlerts();
     var t = e.target.closest("button, [data-act]"); if (!t) { if (S.popOpen && !e.target.closest(".pop")) { S.popOpen = false; renderSide(); } return; }
     if (t.id === "magBtn") { S.popOpen = !S.popOpen; renderSide(); return; }
     if (t.dataset.pick) { S.sym = t.dataset.pick; S.popOpen = false; renderAll(); return; }
@@ -520,7 +649,6 @@ td.num, th.num { text-align: right; }
     var a = t.dataset.act;
     if (a === "buy") { placeSimple("Buy", S.sym, S.qty, "Market"); return; }
     if (a === "sell") { sellClicked(); return; }
-    if (a === "dismiss") { S.banners.splice(+t.dataset.i, 1); renderCenter(); return; }
     if (a === "close") { coverModal(t.dataset.sym); return; }
     if (a === "closeall") { if (S.positions.length) coverModal(S.positions[0].sym); return; }
     if (a === "why") { whyModal(+t.dataset.i); return; }
@@ -534,6 +662,7 @@ td.num, th.num { text-align: right; }
   function placeSimple(side, sym, qty, type) {
     addOrder(side, sym, qty, type, "Day", "Accepted");
     toast("Order placed", side + " " + fmt(qty, 0) + " " + sym + " (" + type + ").", null, true);
+    addAlert("trades", "info", "Order placed", side + " " + fmt(qty, 0) + " " + sym + " (" + type + ").");
     renderCenter();
   }
   function sellWord() { return S.demo.long ? "Sell " : "SHORT "; }
@@ -752,6 +881,7 @@ td.num, th.num { text-align: right; }
       addOrder("Sell short", t.sym, q, t.type, t.tif, "Accepted");
       closeModal(); renderAll();
       toast("Short order accepted", "Sold short " + fmt(q, 0) + " " + t.sym + ". Rate shown: " + fmt(t.rate, 1) + "%. It can change at any time, even right after you submit.", null, true);
+      addAlert("trades", "info", "Short order accepted", "Sold short " + fmt(q, 0) + " " + t.sym + ". Est. borrow rate " + fmt(t.rate, 1) + "%.");
     }, 900);
   }
 
@@ -772,8 +902,9 @@ td.num, th.num { text-align: right; }
         m.querySelector("#cover").onclick = function () {
           addOrder("Buy to cover", sym, Math.abs(p.qty), "Market", "Day", "Accepted");
           S.positions = S.positions.filter(function (x) { return x !== p; });
-          S.banners = S.banners.filter(function (b) { return b.sym !== sym; });
+          S.alerts.forEach(function (a) { if (a.sym === sym && a.cover) { a.cover = false; a.resolved = true; } });
           closeModal(); renderAll(); toast("Position closed", "Bought " + fmt(Math.abs(p.qty), 0) + " " + sym + " to cover.", null, true);
+          addAlert("trades", "info", "Position closed", "Bought " + fmt(Math.abs(p.qty), 0) + " " + sym + " to cover.");
         };
       });
   }
@@ -796,15 +927,15 @@ td.num, th.num { text-align: right; }
     p.rate = Math.round((old + add) * 10) / 10; s.rate = p.rate; p.tier = Math.min(2, p.tier + 1); p.flash = true;
     var oc = charge(p.qty, s.price, old), nc = charge(p.qty, s.price, p.rate);
     var body = "<b>" + p.sym + "</b> borrow rate rose from " + fmt(old, 1) + "% to " + fmt(p.rate, 1) + "%. Estimated overnight charge on your short: " + money(nc) + " (was " + money(oc) + ").";
-    S.banners.unshift({ kind: p.tier === 2 ? "crit" : "alert", sym: p.sym, html: "<b>Rate alert.</b> " + body });
-    toast("Rate alert: " + p.sym, body, [{ label: "Close or reduce", fn: function () { coverModal(p.sym); } }, { label: "Dismiss", fn: function () {} }]);
+    addAlert("borrow", p.tier === 2 ? "crit" : "alert", "Rate alert: " + p.sym, body, { sym: p.sym, cover: true });
+    toast("Rate alert: " + p.sym, body, [{ label: "Close or reduce", fn: function () { coverModal(p.sym); } }, { label: "View alerts", fn: openAlerts }]);
     S.tab = "positions"; renderAll();
   }
   function simRecall() {
     var p = S.positions.filter(function (x) { return x.sym === "KLMN"; })[0] || ensurePosition("KLMN");
     p.tier = 2; p.flash = true;
-    S.banners.unshift({ kind: "crit", sym: p.sym, html: "<b>Recall notice.</b> Shares for " + p.sym + " are no longer available to borrow. Close your short before the next market open to avoid a buy-in." });
-    toast("Recall notice: " + p.sym, "Shares are no longer available to borrow. Close your short before the next market open to avoid a buy-in.", [{ label: "Close or reduce", fn: function () { coverModal(p.sym); } }]);
+    addAlert("borrow", "crit", "Recall notice: " + p.sym, "Shares for " + p.sym + " are no longer available to borrow. Close your short before the next market open to avoid a buy-in.", { sym: p.sym, cover: true });
+    toast("Recall notice: " + p.sym, "Shares are no longer available to borrow. Close your short before the next market open to avoid a buy-in.", [{ label: "Close or reduce", fn: function () { coverModal(p.sym); } }, { label: "View alerts", fn: openAlerts }]);
     S.tab = "positions"; renderAll();
   }
   function simOvernight() {
@@ -812,6 +943,7 @@ td.num, th.num { text-align: right; }
     S.positions.forEach(function (p) {
       var s = SYMS[p.sym]; if (s.status !== "HTB") return; any = true;
       var c = charge(p.qty, s.price, p.rate);
+      addAlert("account", "info", "Borrow charge posted: " + p.sym, "Charged " + money(c) + " for " + fmt(Math.abs(p.qty), 0) + " shares of " + p.sym + " at " + fmt(p.rate, 1) + "%. See Activity for details.", { sym: p.sym });
       S.ledger.push({ date: today(S.ledger.length), sym: p.sym, shares: Math.abs(p.qty), price: s.price, rate: p.rate, charge: c, note: p.rate !== p.openRate ? "The rate changed from " + fmt(p.openRate, 1) + "% when you opened the short to " + fmt(p.rate, 1) + "%. Charges use the rate in effect for the day." : "The rate stayed at " + fmt(p.rate, 1) + "% since you opened the short." });
     });
     if (!any) { ensurePosition("ZRXT"); simOvernight(); return; }
@@ -842,25 +974,25 @@ td.num, th.num { text-align: right; }
   });
   function resetDemo() {
     SYMS.ZRXT.rate = 42.0; SYMS.KLMN.rate = 118.0;
-    S.positions = []; S.orders = []; S.ledger = []; S.banners = []; S.tab = "positions"; S.sym = "ZRXT"; S.qty = 10;
+    S.positions = []; S.orders = []; S.ledger = []; S.alerts = []; S.tab = "positions"; S.sym = "ZRXT"; S.qty = 10;
     S.demo = { eligible: true, avail: "full", data: "fresh", timer: 30, drift: true, long: false };
-    closeModal(); renderAll();
+    closeModal(); closeAlerts(); renderBell(); renderAll();
   }
   function jump(k) {
-    closeModal(); $("toasts").innerHTML = "";
+    closeModal(); closeAlerts(); $("toasts").innerHTML = "";
     S.ctlOpen = false; $("ctl").hidden = true; $("ctlBtn").setAttribute("aria-expanded", "false");
     S.demo.eligible = true; S.demo.data = "fresh"; S.demo.long = false; S.demo.avail = "full";
     SYMS.ZRXT.rate = 42.0; SYMS.KLMN.rate = 118.0;
     if (k === "1") { S.sym = "ZRXT"; S.popOpen = true; S.positions = []; renderAll(); return; }
     if (k === "3") { S.sym = "ZRXT"; renderAll(); openTicket("ZRXT", 1000, "Market"); return; }
-    if (k === "4") { S.positions = []; S.ledger = []; S.banners = []; ensurePosition("ZRXT"); S.sym = "ZRXT"; simOvernight(); return; }
-    if (k === "5") { S.positions = []; S.banners = []; ensurePosition("ZRXT"); S.sym = "ZRXT"; simRateUp(); return; }
+    if (k === "4") { S.positions = []; S.ledger = []; S.alerts = []; ensurePosition("ZRXT"); S.sym = "ZRXT"; simOvernight(); return; }
+    if (k === "5") { S.positions = []; S.alerts = []; ensurePosition("ZRXT"); S.sym = "ZRXT"; simRateUp(); openAlerts(); return; }
     if (k === "3b") { S.sym = "ZRXT"; renderAll(); openTicket("ZRXT", 1000, "Market"); checkOrder(); return; }
     if (k === "6") { S.sym = "ZRXT"; S.demo.drift = true; renderAll(); openTicket("ZRXT", 1000, "Market"); refreshRate(); return; }
     if (k === "7a") { S.sym = "KLMN"; S.demo.avail = "partial"; renderAll(); openTicket("KLMN", 5000, "Market"); checkOrder(); return; }
     if (k === "7g") { S.sym = "ZRXT"; S.demo.avail = "none"; renderAll(); openTicket("ZRXT", 1000, "Market"); checkOrder(); return; }
     if (k === "7b") { S.sym = "ZRXT"; renderAll(); openTicket("ZRXT", 1000, "Limit"); S.ticket.tif = "GTC"; checkOrder(); return; }
-    if (k === "7d") { S.positions = []; S.banners = []; S.sym = "KLMN"; ensurePosition("KLMN"); simRecall(); return; }
+    if (k === "7d") { S.positions = []; S.alerts = []; S.sym = "KLMN"; ensurePosition("KLMN"); simRecall(); openAlerts(); return; }
     if (k === "7f") { S.sym = "ZRXT"; S.demo.eligible = false; renderAll(); startShort("ZRXT", 1000, "Market"); return; }
   }
 
